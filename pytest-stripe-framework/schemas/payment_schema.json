@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^pi_[a-zA-Z0-9]+$"
+    },
+    "object": {
+      "type": "string",
+      "enum": ["payment_intent"]
+    },
+    "amount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3
+    },
+    "status": {
+      "type": "string"
+    },
+    "client_secret": {
+      "type": "string"
+    },
+    "created": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "object",
+    "amount",
+    "currency",
+    "status",
+    "created"
+  ],
+  "additionalProperties": true
+}

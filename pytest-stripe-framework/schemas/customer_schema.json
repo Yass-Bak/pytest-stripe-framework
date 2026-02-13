@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^cus_[a-zA-Z0-9]+$"
+    },
+    "object": {
+      "type": "string",
+      "enum": ["customer"]
+    },
+    "created": {
+      "type": "integer"
+    },
+    "description": {
+      "type": ["string", "null"]
+    },
+    "email": {
+      "type": ["string", "null"]
+    },
+    "name": {
+      "type": ["string", "null"]
+    },
+    "phone": {
+      "type": ["string", "null"]
+    }
+  },
+  "required": [
+    "id",
+    "object",
+    "created"
+  ],
+  "additionalProperties": true
+}
