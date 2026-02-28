@@ -47,12 +47,8 @@ class TestNegative:
 
     @allure.story("Idempotency")
     def test_idempotency_key(self, client):
-        # Stripe uses Idempotency-Key header.
-        # Our client doesn't support setting headers per request easily in previous wrapper?
-        # 'kwargs' are passed to session.request.
-        # requests.request(..., headers=...) merges headers.
-        
-        key = "unique-key-12345"
+        import uuid
+        key = str(uuid.uuid4())
         headers = {"Idempotency-Key": key}
         
         with allure.step("First request"):

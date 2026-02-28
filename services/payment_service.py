@@ -10,14 +10,14 @@ class PaymentService:
         Creates a payment intent.
         """
         data = payment_dto.model_dump(exclude_none=True)
-        # Fix array params
-        payload = {}
+        # Fix array params using list of tuples for URL encoding
+        payload = []
         for key, value in data.items():
             if isinstance(value, list):
-                for i, v in enumerate(value):
-                    payload[f"{key}[{i}]"] = v
+                for v in value:
+                    payload.append((f"{key}[]", str(v)))
             else:
-                payload[key] = value
+                payload.append((key, str(value)))
 
         return self.client.post("payment_intents", data=payload)
 
