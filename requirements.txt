@@ -3,6 +3,6 @@ requests>=2.31.0
 python-dotenv>=1.0.0
 allure-pytest>=2.13.2
 jsonschema>=4.21.1
-pydantic>=2.6.0
+pydantic[email]>=2.6.0
 pytest-xdist>=3.5.0
 pytest-rerunfailures>=13.0
