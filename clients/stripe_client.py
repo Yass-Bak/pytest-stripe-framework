@@ -39,11 +39,11 @@ class StripeClient:
             logger.error(f"Request failed: {str(e)}")
             raise
 
-    def get(self, endpoint, params=None):
-        return self.request("GET", endpoint, params=params)
+    def get(self, endpoint, params=None, **kwargs):
+        return self.request("GET", endpoint, params=params, **kwargs)
 
-    def post(self, endpoint, data=None):
-        return self.request("POST", endpoint, data=data)
+    def post(self, endpoint, data=None, **kwargs):
+        return self.request("POST", endpoint, data=data, **kwargs)
 
-    def delete(self, endpoint):
-        return self.request("DELETE", endpoint)
+    def delete(self, endpoint, **kwargs):
+        return self.request("DELETE", endpoint, **kwargs)

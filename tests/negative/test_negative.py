@@ -28,14 +28,13 @@ class TestNegative:
         # Better: use client from fixture
         
     def test_bad_request_payload(self, client):
-        with allure.step("Send empty post to customers"):
-            # Stripe allows empty post to create customer? Yes (creates guest/anon customer with ID).
-            # So let's send garbage.
+        with allure.step("Send post to customers with invalid email formatting"):
             response = client.post("customers", data={"email": "not-an-email"})
-            # API might accept invalid email format? Stripe does basic validation.
-            # If it fails, good. If acts weird, assert that.
-            # Actually, let's try a non-existent endpoint.
             
+        with allure.step("Verify 400 Bad Request error"):
+            assert response.status_code == 400
+            err = response.json().get('error', {})
+            assert 'Invalid email address' in err.get('message', '')
     @allure.story("Resource Not Found")
     def test_resource_not_found(self, customer_service):
         with allure.step("Get non-existent customer"):
